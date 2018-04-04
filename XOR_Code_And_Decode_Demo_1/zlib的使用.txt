@@ -1,0 +1,48 @@
+zlib的使用
+
+
+1、准备步骤
+
+
+相关下载 http://download.csdn.net/detail/pvpishard/6030401
+
+
+
+不用安装，4个文件放好位置就行。
+
+就cocos2d-x来讲，把zlib.h和zconf.h放到 cocos2d-x根目录\cocos2dx\platform\third_party\emscripten\libz里面;（好像那里本来就有）
+
+另外两个dll和lib放到项目的debug.win32里面;（好像dll也是本来就有=。=）
+
+
+
+
+然后在项目的属性里，把lib的地址写到 配置属性->链接器->输入->附加依赖项，把.h的地址加到 C/C++->附加包含目录;
+
+在要使用压缩解压的文件头里写上
+
+#include "zlib.h"
+ #pragma comment(lib, "ZLib.lib")
+
+
+
+
+2、使用方法：
+
+/* 压缩 */  
+compress(bufStr, &bufLen, srcStr, srcLen);  
+
+  
+ /* 解压缩 */  
+uncompress(bufStr, &bufLen, srcStr, srcLen);
+
+
+
+
+都是后者转换到前者;
+
+
+字符串类型是Bytef，字串长度的类型是uLongf; 
+
+
+bufLen = sizeof(buf);
